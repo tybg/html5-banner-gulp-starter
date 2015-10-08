@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git://github.com/gregcarrart/html5-banner-gulp-starter.git"
   },
+  "license": "MIT",
   "aliasify": {
     "aliases": {
       "underscore": "lodash"
