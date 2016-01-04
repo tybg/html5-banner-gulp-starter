@@ -52,9 +52,9 @@ module.exports = {
         // bundle config in the list below
         src: src,
         bundleConfigs: [{
-            entries: src + '/javascript/main.js',
+            entries: src + '/javascript/index.js',
             dest: dest,
-            outputName: 'main.js',
+            outputName: 'index.js',
             // Additional file extentions to make optional
             extensions: ['.coffee', '.js', '.hbs'],
             // list of modules to make require-able externally
@@ -63,7 +63,7 @@ module.exports = {
     },
     production: {
         cssSrc: dest + '/styles.css',
-        jsSrc: dest + '/main.js',
+        jsSrc: dest + '/index.js',
         dest: dest
     },
     settings: settings

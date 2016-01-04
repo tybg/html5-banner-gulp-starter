@@ -6,7 +6,7 @@ var size = require('gulp-filesize');
 gulp.task('minifyHtml', function() {
     return gulp.src(config.src)
         .pipe(htmlmin({
-            collapseWhitespace: true,
+            collapseWhitespace: false,
             removeComments: true,
             removeAttributeQuotes: true,
             removeStyleLinkTypeAttributes: true

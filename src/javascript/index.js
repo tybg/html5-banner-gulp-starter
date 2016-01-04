@@ -24,9 +24,9 @@ var Animations = (function () {
     // This creates all of our animation elements
     Animations.prototype.assign = function () {
         elements.ad                     = $('.ad').selector;
-        elements.frame1                 = $('#frame-1').selector;
-        elements.frame2                 = $('#frame-2').selector;
-        elements.frame3                 = $('#frame-3').selector;
+        elements.frame1                 = $('#scene-1').selector;
+        elements.frame2                 = $('#scene-2').selector;
+        elements.frame3                 = $('#scene-3').selector;
         elements.endframe               = $('#endframe').selector;
         elements.first                  = $('#element-1').selector;
         elements.second                 = $('#element-2').selector;
@@ -56,7 +56,7 @@ var Animations = (function () {
         var main = new TimelineLite();
         // Frame # 1 -------------------------------------------------------------------------
         // main animation goes here, cuz
-        
+        main.to(elements.frame1, durationFadeIn, {autoAlpha: 1}, 0.5);
 
 
         // Create timeline
@@ -83,6 +83,7 @@ var Animations = (function () {
 
 window.onload = function () {
     var anim = new Animations();
+    var clickTag = window.clickThrough;
 
     anim.assign();
     anim.begin();
@@ -92,4 +93,28 @@ window.onload = function () {
     } else {
         // Mobile Specific Events
     }
+
+    //UNCOMMENT IF ADBUILDER
+    // //Ad Buider
+    // if (dealerTag.length > 20 && dealerTag.length <= 35) {
+    //     $('#dealer-name').css({
+    //         'font-size': '1.6em',
+    //         'width': '50%',
+    //         'line-height': '1.1em',
+    //         'margin-top': '-1em'
+    //     });
+    // } else if (dealerTag.length > 35){
+    //     $('#dealer-name').css({
+    //         'font-size': '1.1em',
+    //         'line-height': '1.2em',
+    //         'margin-top': '-0.5em',
+    //         'width': '50%'
+    //     });
+    // }
+    // //set the text
+    // $('#dealer-name').selector.innerHTML = dealerTag;
+
+    $('.ad').on('click', function() {
+        window.open(clickTag, '_blank');
+    });
 };
