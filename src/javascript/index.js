@@ -17,9 +17,7 @@ var Animations = (function () {
         backgrounds = {};    // Just another handy container
 
     // Construct
-    function Animations () {
-
-    }
+    function Animations () {}
 
     // This creates all of our animation elements
     Animations.prototype.assign = function () {
@@ -50,6 +48,7 @@ var Animations = (function () {
             pauseDuration       = 2;
 
         // create a home for our animations
+        // example: timeline complete parameters:
         // timeline = new TimelineLite( {onComplete:this.onFinish, onCompleteParams:["test1", "test2"], onCompleteScope:this } );
         timeline = new TimelineLite();
 
@@ -57,7 +56,6 @@ var Animations = (function () {
         // Frame # 1 -------------------------------------------------------------------------
         // main animation goes here, cuz
         main.to(elements.frame1, durationFadeIn, {autoAlpha: 1}, 0.5);
-
 
         // Create timeline
         timeline.add(main);
@@ -67,9 +65,7 @@ var Animations = (function () {
     };
 
     // This Kicks off the animation on screen
-    Animations.prototype.onFinish = function (scope) {
-
-    };
+    Animations.prototype.onFinish = function (scope) {};
 
     Animations.prototype.begin = function () {
         // hide loader!
@@ -85,6 +81,7 @@ window.onload = function () {
     var anim = new Animations();
     var clickTag = window.clickThrough;
 
+
     anim.assign();
     anim.begin();
 
@@ -96,6 +93,7 @@ window.onload = function () {
 
     //UNCOMMENT IF ADBUILDER
     // //Ad Buider
+    // var dealerTag = window.dealerName;
     // if (dealerTag.length > 20 && dealerTag.length <= 35) {
     //     $('#dealer-name').css({
     //         'font-size': '1.6em',
