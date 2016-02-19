@@ -11,10 +11,8 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
 var Animations = (function () {
     'use strict';
 
-    var timeline,            // Main Animation that hold the child animations
-        variant,            // style... mpu / leaderboard etc
-        elements = {},         // Home of all of the DOM Node Elements
-        backgrounds = {};    // Just another handy container
+    var timeline,
+        elements = {};
 
     // Construct
     function Animations () {}
@@ -112,7 +110,8 @@ window.onload = function () {
     // //set the text
     // $('#dealer-name').selector.innerHTML = dealerTag;
 
-    $('.ad').on('click', function() {
-        window.open(clickTag, '_blank');
-    });
+    // DCM No longer accepts clicktags in this manner
+    // $('.ad').on('click', function() {
+    //     window.open(clickTag, '_blank');
+    // });
 };
