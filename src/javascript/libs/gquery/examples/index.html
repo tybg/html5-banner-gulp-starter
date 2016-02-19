@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+ <html>
+ 	<head>
+ 		<meta charset="utf-8">
+ 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 		<title></title>
+ 		<meta name="description" content=" " />
+ 		<meta name="author" content=" " />
+ 		<meta name="HandheldFriendly" content="true" />
+ 		<meta name="MobileOptimized" content="320" />
+ 		<!-- Use maximum-scale and user-scalable at your own risk. It disables pinch/zoom. Think about usability/accessibility before including.-->
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+ 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+ 		<link rel="stylesheet" type="text/css" href=" ">
+
+        <style>
+            .bruh {
+                font-size: 1.5em;
+            }
+        </style>
+ 	</head>
+ 	<body>
+ 		<div class="container">
+            <h1>d</h1>
+            <ul>
+                <li>List Item</li>
+                <li>List Item</li>
+                <li>List Item</li>
+                <li>List Item</li>
+            </ul>
+
+            <div id="hidden">hue hue huehue dis hidden</div>
+
+            <div id="another-one">major key</div>
+
+            <button>Click dis</button>
+
+            <div id="data-list">
+
+            </div>
+        </div>
+ 	<script type="text/javascript" src="../src/gquery.js"></script>
+
+    <script>
+        $('.container h1').html('The Ghetto Title');
+
+        $('li').css({
+            'margin': '10px',
+            'background-color': '#cccccc'
+        });
+
+        $('li').on('click', alertYo);
+
+        $('h1, #another-one').on('click', function() {
+            console.log('yo dawg');
+        });
+
+        $('#hidden').hide();
+
+        $('button').on('click', function() {
+            alert('lel you clicked');
+            $('li').off('click', alertYo);
+        });
+
+        function alertYo() {
+            alert('yo');
+        }
+
+        $('button').addClass('bruh');
+
+        $.ajax({
+            url: 'http://puppygifs.tumblr.com/api/read/json',
+            method: 'get',
+            dataType: 'jsonp',
+            success: function(data) {
+                handleData(data);
+            }
+        });
+
+        function handleData(data){
+            $.each(data.posts, function(i, dataObject) {
+                if (i < 21 && dataObject['photo-url-500']) {
+                    $('#data-list').append('<li><img src="' + dataObject['photo-url-500'] + '" /></li>');
+                }
+            });
+        }
+
+    </script>
+ 	</body>
+ </html>
