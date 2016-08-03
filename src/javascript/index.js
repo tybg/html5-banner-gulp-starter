@@ -4,10 +4,44 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
     TweenLite = require('libs/TweenLite.js'),
     TimelineLite = require('libs/TimelineLite.js'),
     CSSPlugin = require('libs/CSSPlugin.js');
-//You can use $('.class').selector or $('#id').selector for
-//jQuery-like workflow. $.each(selector, callback), $.css({Object}),
-//$.on(eventType, callback). Greensock TweenLite and TimelineLite
-//are also included.
+// You can use $('.class').selector or $('#id').selector for
+// jQuery-like workflow. $.each(selector, callback), $.css({Object}),
+// $.on(eventType, callback). Greensock TweenLite and TimelineLite
+// are also included.
+//
+//
+// Generate a CTA button:
+//
+// UTIL.cta($(selector), {
+//     style: String (required),
+//     w: Number (required),
+//     h: Number (required),
+//     posX: Number (only necessary for full),
+//     posY: Number (only necessary for full),
+//     color: String (required),
+//     textW: Number (required),
+//     textH: Number (required)
+// });
+//
+// Style:  full (full polygon, usually 300x600's),
+//         right (half polygon from right side, usually 728x90's),
+//         left (half polygon from left side, usually 300x250's),
+//         none (no polygon from bottom, usually 160x600's)
+// Color: Hex value
+// Text: Make sure to include an svg named "cta-txt.svg", and enter in the
+//       width and height values
+// Animate: make sure you include the animations for each cta style in your Timeline. Also be sure to add any rollover events when the animation is finished.
+//         full:   .to(elements.ctaBorder, durationSwipe, {css: {'stroke-dasharray': '645 850'}, ease: Power2.easeInOut}, 3)
+//                 .to(elements.ctaPolygon, durationSwipe, {css: {'fill-opacity': 1}}, 3.5)
+//                 .to(elements.ctaTxt, durationSwipe, {autoAlpha: 1}, 3.5)
+//
+//          left: .to(elements.ctaContainer, durationSwipe, {css: {'left': -10}, ease: Power2.easeOut}, 15)
+//
+//          right: .to(elements.ctaContainer, durationSwipe, {css: {'right': -10}, ease: Power2.easeOut}, 15)
+//
+//          bottom: .to(elements.ctaContainer, durationSwipe, {css: {'bottom': 0}, ease: Power2.easeOut}, 15)
+
+
 var Animations = (function () {
     'use strict';
 
@@ -30,6 +64,10 @@ var Animations = (function () {
         elements.fourth                 = $('#element-4').selector;
         elements.cta                    = $('#cta').selector;
         elements.logo                   = $('#logo').selector;
+        elements.ctaBorder              = $('#cta-border').selector;
+        elements.ctaContainer           = $('#cta-container').selector;
+        elements.ctaPolygon             = $('#cta-polygon').selector;
+        elements.ctaTxt                 = $('#cta-txt').selector;
 
         this.construct();
     };
@@ -53,7 +91,10 @@ var Animations = (function () {
         var main = new TimelineLite();
         // Frame # 1 -------------------------------------------------------------------------
         // main animation goes here, cuz
-        main.to(elements.frame1, durationFadeIn, {autoAlpha: 1}, 0.5);
+        main.to(elements.frame1, durationFadeIn, {autoAlpha: 1}, 0.5)
+            .to(elements.ctaBorder, durationSwipe, {css: {'stroke-dasharray': '645 850'}, ease: Power2.easeInOut}, 3)
+            .to(elements.ctaPolygon, durationSwipe, {css: {'fill-opacity': 1}}, 3.5)
+            .to(elements.ctaTxt, durationSwipe, {autoAlpha: 1}, 3.5)
 
         // Create timeline
         timeline.add(main);
@@ -79,6 +120,16 @@ window.onload = function () {
     var anim = new Animations();
     var clickTag = window.clickThrough;
 
+    UTIL.cta($('#element-1'), {
+        w: 160,
+        h: 21,
+        posX: 0,
+        posY: 100,
+        style: 'full',
+        color: '#005096',
+        textW: 101,
+        textH: 8
+    });
 
     anim.assign();
     anim.begin();

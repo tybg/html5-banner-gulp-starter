@@ -194,4 +194,48 @@ UTIL.environment = {
     }
 };
 
+UTIL.cta = function(selector, options) {
+    var w            = options.w,
+        h            = options.h,
+        posX         = options.posX || null,
+        posY         = options.posY || null,
+        style        = options.style,
+        color        = options.color.indexOf('#') > -1 ? options.color : '#'+options.color,
+        textW        = options.textW,
+        textH        = options.textH,
+        angleRatio   = 0.593,
+        html;
+
+    if (style == 'full') {
+        html =  '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; top: '+posY+'px; left: '+posX+'px;">'+
+                    '<svg id="cta-border" style="stroke-dasharray: 75px 850px; stroke-dashoffset: 75px;" viewBox="0 0 '+w+' '+h+'">'+
+                        '<polygon id="cta-polygon" fill="none" style="fill: '+color+'; fill-opacity: 0;" stroke="'+color+'" stroke-width="1" stroke-miterlimit="10" points="0,'+h+' '+(angle*h)+',0 '+w+',0 '+(w-(angle*h))+','+h+'">'+
+                    '</svg>'+
+                    '<div class="element" id="cta-txt" style="opacity: 0; background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
+                '</div>';
+    } else if (style == 'left') {
+        html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: 0; left: -'+(w+10)+'px;">'+
+                    '<svg id="cta-border" viewBox="0 0 '+w+' '+h+'">'+
+                        '<polygon id="cta-polygon" fill="none" style="fill: '+color+';" points="0,'+h+' 0,0 '+w+',0 '+(w-(angle*h))+','+h+'">'+
+                    '</svg>'+
+                    '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
+                '</div>';
+    } else if (style == 'right') {
+        html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: 0; right: -'+(w+10)+'px;">'+
+                    '<svg id="cta-border" viewBox="0 0 '+w+' '+h+'">'+
+                        '<polygon id="cta-polygon" fill="none" style="fill: '+color+';" points="0,'+h+' '+(angle*h)+',0 '+w+',0 '+w+','+h+'">'+
+                    '</svg>'+
+                    '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
+                '</div>';
+    } else if (style == 'none') {
+        html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: -'+h+'px; background-color: '+color+';">'+
+                    '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
+                '</div>';
+    } else {
+        console.error('Error: no CTA button type specified');
+    }
+
+    selector.append(html);
+}
+
 module.exports = UTIL;

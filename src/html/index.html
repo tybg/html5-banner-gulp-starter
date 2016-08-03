@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="ad.size" content="width=300,height=250">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
     <script>
         // // UNCOMMENT IF AD BUILDER
@@ -22,26 +23,33 @@
     <!-- Start by adding banner class type: mbu (300x250), skyscraper (160x600),
     large-skyscraper (300x600) or leaderboard (728x90)-->
 
-    <div class="ad mbu">
-        <a href="javascript:window.open(window.clickTag)">
-            <div class="intro">
-                <div class="scene" id="scene-1">
-                    <div class="element" id="element-1"></div>
-                    <div class="element" id="element-2"></div>
-                </div>
-                <div class="scene" id="scene-2">
-                    <div class="element" id="element-3"></div>
-                    <div class="element" id="element-4"></div>
-                </div>
+    <div class="ad skyscraper">
+        <div class="intro">
+            <div class="scene" id="scene-1">
+                <div class="element" id="element-1"></div>
+                <div class="element" id="element-2"></div>
             </div>
-            <div class="scene" id="endframe">
-                <div class="element" id="logo"></div>
-                <div class="element" id="cta"></div>
+            <div class="scene" id="scene-2">
+                <div class="element" id="element-3"></div>
+                <div class="element" id="element-4"></div>
             </div>
-        </a>
+        </div>
+        <div class="scene" id="endframe">
+            <div class="element" id="logo"></div>
+            <div class="element" id="cta"></div>
+        </div>
+        <div id="clicktag"></div>
     </div>
 
     <script src="index.js"></script>
+    <script>
+        $('#clicktag').on('click', function() {
+            window.open(window.clickTag, '_blank');
+        });
+
+        var angle = 0.593;
+        console.log(angle * 27);
+    </script>
 
 </body>
 

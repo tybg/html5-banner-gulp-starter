@@ -40,24 +40,17 @@ body {
     overflow: hidden;
     cursor: pointer;
 
-    .intro {
+    .scene {
         position: absolute;
         width: 100%;
         height: 100%;
-    }
 
-    .frame {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+        .element {
+            position: absolute;
+            background-repeat: no-repeat;
+        }
     }
 }
-
-.element {
-    position: absolute;
-    background-repeat: no-repeat;
-}
-
 .mbu {
     width: 300px;
     height: 250px;
@@ -76,4 +69,11 @@ body {
 .leaderboard {
     width: 728px;
     height: 90px;
+}
+
+#clicktag {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
 }
