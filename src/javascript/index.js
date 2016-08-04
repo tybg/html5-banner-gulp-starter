@@ -112,7 +112,9 @@ window.onload = function () {
     UTIL.cta($('#element-1'), {
         w: 160,
         h: 21,
-        style: 'none',
+        posX: 0,
+        posY: 10,
+        style: 'full',
         color: '#005096',
         textW: 90,
         textH: 7,
