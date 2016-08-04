@@ -213,7 +213,7 @@ UTIL.cta = function(selector, options) {
     if (style == 'full') {
         html =  '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; top: '+posY+'px; left: '+posX+'px;">'+
                     '<svg id="cta-border" style="stroke-dasharray: 75px 850px; stroke-dashoffset: 75px;" viewBox="0 0 '+w+' '+h+'">'+
-                        '<polygon id="cta-polygon" fill="none" style="fill: '+color+'; fill-opacity: 0;" stroke="'+color+'" stroke-width="1" stroke-miterlimit="10" points="0,'+h+' '+(angle*h)+',0 '+w+',0 '+(w-(angle*h))+','+h+'">'+
+                        '<polygon id="cta-polygon" fill="none" style="fill: '+color+'; fill-opacity: 0;" stroke="'+color+'" stroke-width="1" stroke-miterlimit="10" points="0,'+h+' '+(angleRatio*h)+',0 '+w+',0 '+(w-(angleRatio*h))+','+h+'">'+
                     '</svg>'+
                     '<div class="element" id="cta-txt" style="opacity: 0; background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
                 '</div>';
