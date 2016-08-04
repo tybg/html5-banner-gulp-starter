@@ -1,9 +1,9 @@
 //Main JS file
 var gQuery = require('libs/gquery/dist/gquery.min.js'),
-    UTIL = require('./util.js'),
     TweenLite = require('libs/TweenLite.js'),
     TimelineLite = require('libs/TimelineLite.js'),
-    CSSPlugin = require('libs/CSSPlugin.js');
+    CSSPlugin = require('libs/CSSPlugin.js'),
+    UTIL = require('./util.js');
 // You can use $('.class').selector or $('#id').selector for
 // jQuery-like workflow. $.each(selector, callback), $.css({Object}),
 // $.on(eventType, callback). Greensock TweenLite and TimelineLite
@@ -20,7 +20,8 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
 //     posY: Number (only necessary for full),
 //     color: String (required),
 //     textW: Number (required),
-//     textH: Number (required)
+//     textH: Number (required),
+//     delay: Number (required)
 // });
 //
 // Style:  full (full polygon, usually 300x600's),
@@ -30,16 +31,7 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
 // Color: Hex value
 // Text: Make sure to include an svg named "cta-txt.svg", and enter in the
 //       width and height values
-// Animate: make sure you include the animations for each cta style in your Timeline. Also be sure to add any rollover events when the animation is finished.
-//         full:   .to(elements.ctaBorder, durationSwipe, {css: {'stroke-dasharray': '645 850'}, ease: Power2.easeInOut}, 3)
-//                 .to(elements.ctaPolygon, durationSwipe, {css: {'fill-opacity': 1}}, 3.5)
-//                 .to(elements.ctaTxt, durationSwipe, {autoAlpha: 1}, 3.5)
-//
-//          left: .to(elements.ctaContainer, durationSwipe, {css: {'left': -10}, ease: Power2.easeOut}, 15)
-//
-//          right: .to(elements.ctaContainer, durationSwipe, {css: {'right': -10}, ease: Power2.easeOut}, 15)
-//
-//          bottom: .to(elements.ctaContainer, durationSwipe, {css: {'bottom': 0}, ease: Power2.easeOut}, 15)
+// Delay: The time (in seconds) that you want cta to animate in
 
 
 var Animations = (function () {
@@ -92,9 +84,6 @@ var Animations = (function () {
         // Frame # 1 -------------------------------------------------------------------------
         // main animation goes here, cuz
         main.to(elements.frame1, durationFadeIn, {autoAlpha: 1}, 0.5)
-            .to(elements.ctaBorder, durationSwipe, {css: {'stroke-dasharray': '645 850'}, ease: Power2.easeInOut}, 3)
-            .to(elements.ctaPolygon, durationSwipe, {css: {'fill-opacity': 1}}, 3.5)
-            .to(elements.ctaTxt, durationSwipe, {autoAlpha: 1}, 3.5)
 
         // Create timeline
         timeline.add(main);
@@ -123,12 +112,11 @@ window.onload = function () {
     UTIL.cta($('#element-1'), {
         w: 160,
         h: 21,
-        posX: 0,
-        posY: 100,
-        style: 'full',
+        style: 'none',
         color: '#005096',
-        textW: 101,
-        textH: 8
+        textW: 90,
+        textH: 7,
+        delay: 3
     });
 
     anim.assign();

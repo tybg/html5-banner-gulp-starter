@@ -203,8 +203,12 @@ UTIL.cta = function(selector, options) {
         color        = options.color.indexOf('#') > -1 ? options.color : '#'+options.color,
         textW        = options.textW,
         textH        = options.textH,
+        delay        = options.delay,
         angleRatio   = 0.593,
         html;
+
+    var ctaTimeline = new TimelineLite({onComplete:this.cta.onFinish});
+    var mainCta = new TimelineLite();
 
     if (style == 'full') {
         html =  '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; top: '+posY+'px; left: '+posX+'px;">'+
@@ -213,6 +217,31 @@ UTIL.cta = function(selector, options) {
                     '</svg>'+
                     '<div class="element" id="cta-txt" style="opacity: 0; background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
                 '</div>';
+
+                selector.append(html);
+
+                var $ctaPolygon = $('#cta-polygon').selector,
+                    $ctaBorder = $('#cta-border').selector,
+                    $ctaTxt = $('#cta-txt').selector;
+
+                mainCta.to($ctaBorder, 0.6, {css: {'stroke-dasharray': '645 850'}, ease: Power2.easeInOut}, delay)
+                    .to($ctaPolygon, 0.6, {css: {'fill-opacity': 1}}, delay+0.5)
+                    .to($ctaTxt, 0.6, {autoAlpha: 1, onComplete: function() {
+                        if (!UTIL.environment.isMobile()) {
+                            $('#clicktag').on('mouseover', function() {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '0.7'}});
+                            });
+
+                            $('#clicktag').on('mouseleave', function() {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '1'}});
+                            });
+                        }
+                    }}, delay+0.5);
+
+                ctaTimeline.add(mainCta);
+                ctaTimeline.play();
+
+
     } else if (style == 'left') {
         html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: 0; left: -'+(w+10)+'px;">'+
                     '<svg id="cta-border" viewBox="0 0 '+w+' '+h+'">'+
@@ -220,6 +249,26 @@ UTIL.cta = function(selector, options) {
                     '</svg>'+
                     '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
                 '</div>';
+
+                selector.append(html);
+
+                var $ctaContainer = $('#cta-container').selector;
+
+                mainCta.to($ctaContainer, 0.6, {css: {'left': -10}, ease: Power2.easeOut, onComplete: function() {
+                    if (!UTIL.environment.isMobile()) {
+                        $('#clicktag').on('mouseover', function() {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'left': 0}, ease: Power2.easeOut});
+                        });
+
+                        $('#clicktag').on('mouseleave', function() {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'left': -10}, ease: Power2.easeOut});
+                        });
+                    }
+                }}, delay);
+
+                ctaTimeline.add(mainCta);
+                ctaTimeline.play();
+
     } else if (style == 'right') {
         html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: 0; right: -'+(w+10)+'px;">'+
                     '<svg id="cta-border" viewBox="0 0 '+w+' '+h+'">'+
@@ -227,15 +276,52 @@ UTIL.cta = function(selector, options) {
                     '</svg>'+
                     '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
                 '</div>';
+
+            selector.append(html);
+
+            var $ctaContainer = $('#cta-container').selector;
+
+            mainCta.to($ctaContainer, 0.6, {css: {'right': -10}, ease: Power2.easeOut, onComplete: function() {
+                if (!UTIL.environment.isMobile()) {
+                    $('#clicktag').on('mouseover', function() {
+                        TweenLite.to($ctaContainer, 0.4, {css: {'right': 0}, ease: Power2.easeOut});
+                    });
+
+                    $('#clicktag').on('mouseleave', function() {
+                        TweenLite.to($ctaContainer, 0.4, {css: {'right': -10}, ease: Power2.easeOut});
+                    });
+                }
+            }}, delay);
+
+            ctaTimeline.add(mainCta);
+            ctaTimeline.play();
+
     } else if (style == 'none') {
-        html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: -'+h+'px; background-color: '+color+';">'+
+        html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: -'+h+'px; background-color: '+color+'; transition: background-color 0.3s ease;">'+
                     '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
                 '</div>';
+
+                selector.append(html);
+
+                var $ctaContainer = $('#cta-container').selector;
+
+                mainCta.to($ctaContainer, 0.6, {css: {'bottom': 0}, ease: Power2.easeOut, onComplete: function() {
+                    if (!UTIL.environment.isMobile()) {
+                        $('#clicktag').on('mouseover', function() {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'background-color': '#000'}});
+                        });
+
+                        $('#clicktag').on('mouseleave', function() {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'background-color': color}});
+                        });
+                    }
+                }}, delay);
+
+                ctaTimeline.add(mainCta);
+                ctaTimeline.play();
     } else {
         console.error('Error: no CTA button type specified');
     }
-
-    selector.append(html);
 }
 
 module.exports = UTIL;
