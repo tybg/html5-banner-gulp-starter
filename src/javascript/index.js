@@ -93,7 +93,13 @@ var Animations = (function () {
     };
 
     // This Kicks off the animation on screen
-    Animations.prototype.onFinish = function (scope) {};
+    Animations.prototype.onFinish = function (scope) {
+        if (!UTIL.environment.isMobile()) {
+            // Desktop-specific events
+        } else {
+            // Mobile Specific Events
+        }
+    };
 
     Animations.prototype.begin = function () {
         // hide loader!
@@ -107,7 +113,6 @@ var Animations = (function () {
 
 window.onload = function () {
     var anim = new Animations();
-    var clickTag = window.clickThrough;
 
     UTIL.cta($('#element-1'), {
         w: 160,
@@ -124,12 +129,6 @@ window.onload = function () {
 
     anim.assign();
     anim.begin();
-
-    if (!UTIL.environment.isMobile()) {
-        // Desktop-specific events
-    } else {
-        // Mobile Specific Events
-    }
 
     //UNCOMMENT IF ADBUILDER
     // //Ad Buider
@@ -151,9 +150,4 @@ window.onload = function () {
     // }
     // //set the text
     // $('#dealer-name').selector.innerHTML = dealerTag;
-
-    // DCM No longer accepts clicktags in this manner
-    // $('.ad').on('click', function() {
-    //     window.open(clickTag, '_blank');
-    // });
 };
