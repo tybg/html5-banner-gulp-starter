@@ -201,6 +201,7 @@ UTIL.cta = function(selector, options) {
         posY         = options.posY || null,
         style        = options.style,
         color        = options.color.indexOf('#') > -1 ? options.color : '#'+options.color || null,
+        rollover     = options.rollover.indexOf('#') > -1 ? options.rollover : '#'+options.rollover || null,
         textW        = options.textW,
         textH        = options.textH,
         animate      = options.animate,
@@ -320,7 +321,7 @@ UTIL.cta = function(selector, options) {
             mainCta.to($ctaContainer, 0.6, {css: {'bottom': 0}, ease: Power2.easeOut, onComplete: function() {
                 if (!UTIL.environment.isMobile()) {
                     $('#clicktag').on('mouseover', function() {
-                        TweenLite.to($ctaContainer, 0.4, {css: {'background-color': '#000'}});
+                        TweenLite.to($ctaContainer, 0.4, {css: {'background-color': rollover}});
                     });
 
                     $('#clicktag').on('mouseleave', function() {
