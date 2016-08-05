@@ -118,6 +118,7 @@ window.onload = function () {
         color: '#005096',
         textW: 90,
         textH: 7,
+        animate: true,
         delay: 3
     });
 
