@@ -200,13 +200,18 @@ UTIL.cta = function(selector, options) {
         posX         = options.posX || null,
         posY         = options.posY || null,
         style        = options.style,
-        color        = options.color.indexOf('#') > -1 ? options.color : '#'+options.color,
+        color        = options.color.indexOf('#') > -1 ? options.color : '#'+options.color || null,
         textW        = options.textW,
         textH        = options.textH,
         animate      = options.animate,
         delay        = options.delay,
         angleRatio   = 0.593,
         html;
+
+    if (!w || !h || !style || !color || !textW || !textH || !animate || !delay) {
+        console.error('Error UTIL.cta: Must provide input for all required paramaters.');
+        return;
+    }
 
     var ctaTimeline = new TimelineLite({onComplete:this.cta.onFinish});
     var mainCta = new TimelineLite();
@@ -301,7 +306,7 @@ UTIL.cta = function(selector, options) {
             ctaTimeline.add(mainCta);
             ctaTimeline.play();
         }
-        
+
     } else if (style == 'none') {
         html = '<div class="element" id="cta-container" style="width: '+w+'px; height: '+h+'px; bottom: -'+h+'px; background-color: '+color+'; transition: background-color 0.3s ease;">'+
                     '<div class="element" id="cta-txt" style="background: url(cta-txt.svg) no-repeat; background-size: '+textW+'px '+textH+'px; left: 50%; top: 50%; width: '+textW+'px; height: '+textH+'px; margin-left:'+(-1*textW/2)+'px; margin-top: '+(-1*textH/2)+'px;"></div>'+
@@ -328,8 +333,6 @@ UTIL.cta = function(selector, options) {
             ctaTimeline.play();
         }
 
-    } else {
-        console.error('Error: no CTA button type specified');
     }
 }
 

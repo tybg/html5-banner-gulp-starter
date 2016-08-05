@@ -21,6 +21,7 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
 //     color: String (required),
 //     textW: Number (required),
 //     textH: Number (required),
+//     animate: Boolean (required),
 //     delay: Number (required)
 // });
 //
