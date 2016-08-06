@@ -237,11 +237,21 @@ UTIL.cta = function(selector, options) {
                 .to($ctaTxt, 0.6, {autoAlpha: 1, onComplete: function() {
                     if (!UTIL.environment.isMobile()) {
                         $('#clicktag').on('mouseover', function() {
-                            TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '0.7'}});
+                            if (!rollover) {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '0.7'}});
+                            } else {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'background-color': rollover}});
+                            }
+
                         });
 
                         $('#clicktag').on('mouseleave', function() {
-                            TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '1'}});
+                            if (!rollover) {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'fill-opacity': '1'}});
+                            } else {
+                                TweenLite.to($('#cta-polygon').selector, 0.4, {css: {'background-color': color}});
+                            }
+
                         });
                     }
                 }}, delay+0.5);
@@ -321,11 +331,19 @@ UTIL.cta = function(selector, options) {
             mainCta.to($ctaContainer, 0.6, {css: {'bottom': 0}, ease: Power2.easeOut, onComplete: function() {
                 if (!UTIL.environment.isMobile()) {
                     $('#clicktag').on('mouseover', function() {
-                        TweenLite.to($ctaContainer, 0.4, {css: {'background-color': rollover}});
+                        if (!rollover) {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'fill-opacity': '0.7'}});
+                        } else {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'background-color': rollover}});
+                        }
                     });
 
                     $('#clicktag').on('mouseleave', function() {
-                        TweenLite.to($ctaContainer, 0.4, {css: {'background-color': color}});
+                        if (!rollover) {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'fill-opacity': '1'}});
+                        } else {
+                            TweenLite.to($ctaContainer, 0.4, {css: {'background-color': color}});
+                        }
                     });
                 }
             }}, delay);

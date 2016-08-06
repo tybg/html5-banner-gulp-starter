@@ -31,7 +31,7 @@ var gQuery = require('libs/gquery/dist/gquery.min.js'),
 //         left (half polygon from left side, usually 300x250's),
 //         none (no polygon from bottom, usually 160x600's)
 // Color: Hex value
-// Rollover: If you would like to control the color of the cta during rollover, enter here
+// Rollover: If you would like to control the color of the cta during rollover, enter here (for 'full' and 'none' cta types)
 // Text: Make sure to include an svg named "cta-txt.svg", and enter in the
 //       width and height values
 // Delay: The time (in seconds) that you want cta to animate in
